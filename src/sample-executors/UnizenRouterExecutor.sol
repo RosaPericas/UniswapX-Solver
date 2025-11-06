@@ -23,7 +23,7 @@ contract UnizenRouterExecutor is IReactorCallback, Owned {
     error UnizenRouterCallFailed();
 
     address private immutable unizenRouter;
-    address private immutable whitelistedCaller;
+    address private whitelistedCaller;
     IReactor private immutable reactor;
     WETH private immutable weth;
 
@@ -94,15 +94,9 @@ contract UnizenRouterExecutor is IReactorCallback, Owned {
         }
     }
 
-    /// @notice This function can be used to convert ERC20s to ETH that remains in this contract
-    /// @param tokensToApprove Max approve these tokens to swapRouter02
-    /// @param multicallData Pass into swapRouter02.multicall()
-    /* function multicall(ERC20[] calldata tokensToApprove, bytes[] calldata multicallData) external onlyOwner {
-        for (uint256 i = 0; i < tokensToApprove.length; i++) {
-            tokensToApprove[i].safeApprove(address(swapRouter02), type(uint256).max);
-        }
-        swapRouter02.multicall(type(uint256).max, multicallData);
-    } */
+    function setWhiteListedCaller(address _whitelistedCaller) external onlyOwner {
+        whitelistedCaller = _whitelistedCaller;
+    }
 
     /// @notice Unwraps the contract's WETH9 balance and sends it to the recipient as ETH. Can only be called by owner.
     /// @param recipient The address receiving ETH
