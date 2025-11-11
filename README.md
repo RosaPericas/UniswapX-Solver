@@ -104,3 +104,25 @@ Note that UniswapX handles fee-on-transfer tokens by transferring the amount spe
 ## Bug Bounty
 
 This repository is subject to the Uniswap Labs Bug Bounty program, per the terms defined [here](https://uniswap.org/bug-bounty).
+
+
+# Unizen - Deploy new Executor: 
+## Configuration
+
+Set the following variables in your `.env` file:
+```env
+FOUNDRY_PRIVATE_KEY = <your-private-key>
+FOUNDRY_UNIZENROUTEREXECUTOR_DEPLOY_REACTOR = <uniswapX-reactor-address>
+FOUNDRY_UNIZENROUTEREXECUTOR_DEPLOY_WHITELISTED_CALLER = <caller-address>
+FOUNDRY_UNIZENROUTEREXECUTOR_DEPLOY_OWNER = <owner-address>
+FOUNDRY_UNIZENROUTEREXECUTOR_DEPLOY_UNIZENROUTER = <unizen-router-address>
+WETH_ADDRESS = <weth-address>
+```
+
+## Deployment
+Run the deployment script script:
+
+```bash
+forge script script/DeployUnizenRouterExecutor.s.sol --rpc-url <rpc> --private-key <deployer-private-Key> --broadcast
+```
+
